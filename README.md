@@ -10,9 +10,7 @@ O projeto da Biblioteca Virtual é um sistema de gerenciamento de biblioteca que
 
 - Frontend: React.js
 - Backend: Node.js com Express.js
-- Banco de Dados: PostgreSQL com Prisma ORM
-- Testes Automatizados: Jest e Supertest
-- Documentação: Postman
+- Banco de Dados: MySQL com Prisma ORM
 
 ## Configuração do Ambiente de Desenvolvimento
 
@@ -22,7 +20,7 @@ Para executar este projeto em sua máquina local, siga as etapas abaixo:
 
 - Certifique-se de ter o Node.js instalado em sua máquina. Você pode fazer o download em [nodejs.org](https://nodejs.org/).
 
-- Instale o PostgreSQL em sua máquina e configure as variáveis de ambiente necessárias.
+- Instale o MySQL em sua máquina e configure as variáveis de ambiente necessárias.
 
 ### Configuração do Backend
 
