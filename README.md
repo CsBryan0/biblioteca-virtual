@@ -83,10 +83,6 @@ Para executar este projeto em sua máquina local, siga as etapas abaixo:
 - O frontend estará disponível em [http://localhost:3000](http://localhost:3000).
 - A API do backend estará disponível em [http://localhost:3333](http://localhost:3333).
 
-### Documentação da API
-
-- A documentação da API pode ser acessada usando o Postman. Importe o arquivo `BibliotecaVirtual.postman_collection.json` e os ambientes do Postman localizados no diretório `postman`.
-
 ## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas (issues) ou enviar pull requests com melhorias ou correções.
