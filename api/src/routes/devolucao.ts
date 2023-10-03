@@ -1,33 +1,44 @@
 import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
+import { formatISO } from "date-fns";
 
 const router = Router();
 const prisma = new PrismaClient();
 
 router.post("/", async (req, res) => {
   try {
-    const { nomeDaPessoa, livroId, dataDevolucaoReal } = req.body;
+    const { nomeDaPessoa, livroNome, dataDevolucaoReal } = req.body;
 
-    const emprestimo = await prisma.emprestimo.findUnique({
+    // Verifique se a dataDevolucaoReal é uma string e está em um formato válido
+    if (
+      typeof dataDevolucaoReal !== "string" ||
+      isNaN(new Date(dataDevolucaoReal).getTime())
+    ) {
+      return res.status(400).json({ error: "Data de devolução inválida." });
+    }
+
+    // Use o Prisma para encontrar o livro com base no nome
+    const livro = await prisma.livro.findUnique({
       where: {
-        id: livroId,
+        nome: livroNome,
       },
     });
 
-    if (!emprestimo) {
-      return res.status(404).json({ error: "Empréstimo não encontrado." });
+    if (!livro) {
+      return res.status(404).json({ error: "Livro não encontrado." });
     }
+
+    const dataDevolucaoFormatada = formatISO(new Date(dataDevolucaoReal));
 
     const devolucao = await prisma.devolucao.create({
       data: {
         nomeDaPessoa,
-        livro: { connect: { id: livroId } }, 
-        dataDevolucaoReal,
-        emprestimo: { connect: { id: emprestimo.id } }, 
+        livro: { connect: { id: livro.id } },
+        dataDevolucaoReal: dataDevolucaoFormatada, 
       },
     });
 
-    console.log("Requisição recebida: ", req.body)
+    console.log("Requisição recebida: ", req.body);
     res.json(devolucao);
   } catch (error) {
     console.error(error);

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const ReturnRegistrationForm: React.FC = () => {
   const [nomeDaPessoa, setPersonName] = useState("");
-  const [livroId, setBookId] = useState("");
+  const [livroNome, setBookName] = useState("");
   const [dataDevolucaoReal, setReturnDate] = useState("");
 
   const handlePersonNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,7 +11,7 @@ const ReturnRegistrationForm: React.FC = () => {
   };
 
   const handleBookIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBookId(e.target.value);
+    setBookName(e.target.value);
   };
 
   const handleReturnDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +24,7 @@ const ReturnRegistrationForm: React.FC = () => {
     // Aqui você pode enviar os dados da devolução para o backend
     const returnData = {
       nomeDaPessoa,
-      livroId,
+      livroNome,
       dataDevolucaoReal,
     };
 
@@ -39,7 +39,7 @@ const ReturnRegistrationForm: React.FC = () => {
       });
 
     setPersonName("");
-    setBookId("");
+    setBookName("");
     setReturnDate("");
   };
 
@@ -66,7 +66,7 @@ const ReturnRegistrationForm: React.FC = () => {
           <label className="block text-gray-700 font-bold mb-2">Livro</label>
           <input
             type="text"
-            value={livroId}
+            value={livroNome}
             onChange={handleBookIdChange}
             className="border border-gray-400 p-2 w-full rounded"
             required
